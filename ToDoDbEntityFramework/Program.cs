@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using ToDoDbEntityFramework.Models;
 
 namespace ToDoDbEntityFramework
 {
@@ -6,7 +8,9 @@ namespace ToDoDbEntityFramework
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var db = new ToDoDbContext();
+            var task = db.Task.First();
+            Console.WriteLine(task.Describtion);
         }
     }
 }
