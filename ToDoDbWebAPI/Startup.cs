@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using NJsonSchema;
+using NSwag.AspNetCore;
+using ToDoDbWebAPI.Models;
 
 namespace ToDoDbWebAPI
 {
@@ -26,6 +23,11 @@ namespace ToDoDbWebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<ToDoDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ToDoDbContext")));
+            // Register the Swagger services
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +44,13 @@ namespace ToDoDbWebAPI
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            // Register the Swagger generator and the Swagger UI middlewares
+            app.UseSwaggerUi3(settings =>
+            {
+                settings.GeneratorSettings.DefaultPropertyNameHandling =
+                    PropertyNameHandling.CamelCase;
+            });
         }
     }
 }
