@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using ToDoDbWebAPI.Model;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace ToDoDbWebAPI.Models
+namespace ToDoDbWebAPI.Data
 {
     public class ToDoDbContext : DbContext
     {

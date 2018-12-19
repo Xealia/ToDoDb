@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NJsonSchema;
 using NSwag.AspNetCore;
-using ToDoDbWebAPI.Models;
+using ToDoDbWebAPI.Data;
 
 namespace ToDoDbWebAPI
 {
@@ -41,16 +41,14 @@ namespace ToDoDbWebAPI
             {
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
-            app.UseMvc();
 
             // Register the Swagger generator and the Swagger UI middlewares
-            app.UseSwaggerUi3(settings =>
-            {
-                settings.GeneratorSettings.DefaultPropertyNameHandling =
-                    PropertyNameHandling.CamelCase;
-            });
+            app.UseSwagger();
+            app.UseSwaggerUi3();
+
+            app.UseMvc();
+
         }
     }
 }

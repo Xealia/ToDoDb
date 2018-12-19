@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ToDoDbWebAPI.Data;
 using ToDoDbWebAPI.Model;
-using ToDoDbWebAPI.Models;
 using Task = ToDoDbWebAPI.Model.Task;
 
 namespace ToDoDbWebAPI.Controllers
@@ -26,7 +26,8 @@ namespace ToDoDbWebAPI.Controllers
         [HttpGet]
         public IEnumerable<Task> GetTask()
         {
-            return _context.Task;
+            var x = _context.Task.ToArray();
+            return x;
         }
 
         // GET: api/Tasks/5

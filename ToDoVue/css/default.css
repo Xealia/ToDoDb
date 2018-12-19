@@ -1,8 +1,14 @@
 ﻿body {
-  /* Uncomment this to enable scrolling and zooming
+    /* Uncomment this to enable scrolling and zooming
   touch-action: manipulation;
   */
 }
-td {
+
+table {
+    border-collapse:collapse;
+    width: 50%;
+}
+
+td,th {
     border: black solid 2px;
 }
