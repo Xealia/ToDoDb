@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>ToDoVue</title>
+    <script src="//unpkg.com/swagger-client" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="js/ToDoApi.js"></script>
     <script src="js/main.js"></script>
@@ -14,11 +15,7 @@
         <task-post :tasks="tasks"></task-post>
     </div>
     <script>
-        console.log('hei');
-        var client = new TaskClient();
-        console.log('hei' + client);
-        var allTasks = client.getTaskAll();
-        console.log('hei' + allTasks);
+        var swaggerClient = new SwaggerClient(specUrl);
         var taskList = new Vue({
             el: "#taskList",
             data: {
