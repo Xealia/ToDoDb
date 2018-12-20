@@ -16,15 +16,19 @@
     <script>
         console.log('hei');
         var client = new TasksClient();
-        console.log('hei' + client);
+        console.log('TaskClient');
+        console.log(client);
         var allTasks = client.getTaskAll();
-        console.log('hei' + allTasks);
+        console.log('TaskClient.getTaskAll');
+        console.log(allTasks);
         var taskList = new Vue({
             el: "#taskList",
             data: {
-                tasks: allTasks
+                tasks: allTasks 
             }
         });
+        console.log('taskList Tasks')
+        console.log(taskList.tasks)
     </script>
 </body>
 </html>

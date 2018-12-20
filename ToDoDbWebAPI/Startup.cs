@@ -42,6 +42,7 @@ namespace ToDoDbWebAPI
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             // Register the Swagger generator and the Swagger UI middlewares
             app.UseSwagger();
