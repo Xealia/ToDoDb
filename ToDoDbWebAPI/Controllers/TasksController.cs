@@ -96,7 +96,8 @@ namespace ToDoDbWebAPI.Controllers
             _context.Task.Add(task);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTask", new { id = task.Id }, task);
+            return Ok(task);
+            //return CreatedAtAction("GetTask", new { id = task.Id }, task);
         }
 
         // DELETE: api/Tasks/5

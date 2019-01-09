@@ -423,7 +423,7 @@ var Task = /** @class */ (function () {
     Task.prototype.init = function (data) {
         if (data) {
             this.id = data["id"];
-            this.describtion = data["describtion"];
+            this.description = data["description"];
             this.isDone = data["isDone"];
         }
     };
@@ -436,7 +436,7 @@ var Task = /** @class */ (function () {
     Task.prototype.toJSON = function (data) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["describtion"] = this.describtion;
+        data["description"] = this.description;
         data["isDone"] = this.isDone;
         return data;
     };

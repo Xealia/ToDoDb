@@ -10,7 +10,7 @@ namespace ToDoDbEntityFramework
         {
             var db = new ToDoDbContext();
             var task = db.Task.First();
-            Console.WriteLine(task.Describtion);
+            Console.WriteLine(task.Description);
         }
     }
 }

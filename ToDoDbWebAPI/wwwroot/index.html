@@ -4,31 +4,44 @@
     <meta charset="utf-8" />
     <title>ToDoVue</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="js/TypeToDoApi.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/ToDoApi.js"></script>
+    <script src="js/TaskPostComp.js"></script>
+    <script src="js/AddPostComp.js"></script>
     <link href="css/default.css" rel="stylesheet" />
 </head>
 <body>
     <div id="taskList">
-        <!--<task-header :tasks="tasks"></task-header>-->
-        <task-post :tasks="tasks"></task-post>
+        <task-post :tasks="tasks" :taskclient="taskclient" v-on:updated="readAllTasks"></task-post>
+        <add-post :task="task" :taskclient="taskclient" v-on:updated="readAllTasks"></add-post>
     </div>
-    <script>
-        console.log('hei');
-        var client = new TasksClient();
-        console.log('TaskClient');
-        console.log(client);
-        var allTasks = client.getTaskAll();
-        console.log('TaskClient.getTaskAll');
-        console.log(allTasks);
+    <script> 
+        //Getting TasksClient and Task from ToDoApi.js
+        var client = new TasksClient(); //Gets functions change db
+        var task = new Task(); //Gets Task composition to create new
         var taskList = new Vue({
             el: "#taskList",
             data: {
-                tasks: allTasks 
+                tasks: [],
+                taskclient: client,
+                task: task
+            },
+            mounted: function () {
+                this.readAllTasks();
+            },
+            methods: {
+                //Gets all task through Api file
+                readAllTasks: function () {
+                    console.log('hei');
+                    const that = this;
+                    that.tasks.length = 0;
+                    that.taskclient.getTaskAll().then(function (allTasks) {
+                        console.log('TaskClient.getTaskAll');
+                        console.log(allTasks);
+                        that.tasks.push(...allTasks);
+                    });
+                }
             }
         });
-        console.log('taskList Tasks')
-        console.log(taskList.tasks)
     </script>
 </body>
 </html>
